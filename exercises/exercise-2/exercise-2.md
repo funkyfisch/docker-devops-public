@@ -32,7 +32,7 @@ Execute the following steps to complete the exercise:
 
 2. Build the image with the name `myapp`.
 
-3. Start a new container based on the `myapp` image.
+3. Start a new container based on the `myapp` image. 
 
 Add one (or more) item(s) to the database via the application's REST API:
 
