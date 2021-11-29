@@ -1,0 +1,10 @@
+{
+  "name": "demo-multistage",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

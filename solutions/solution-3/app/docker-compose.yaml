@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  api:
+    build: .
+    ports:
+      - 8080:80
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=mypassword
+      - MYSQL_DB=items
+    depends_on:
+      - mysql
+      
+  mysql:
+    # platform: linux/x86_64 # only for Mac M1.
+    image: mysql:5.7.36
+    environment:
+      - MYSQL_ROOTPASSWORD=mypassword
+      - MYSQL_DATABASE=items
+    volumes:
+      - mysql_db:/var/lib/mysql
+  
+volumes:
+  mysql_db:

@@ -1,4 +1,4 @@
-# Exercise 1: Docker commands
+# Exercise 2: Docker images
 In this exercise, you will build and run your image for a NodeJS application.
 
 ## Steps
