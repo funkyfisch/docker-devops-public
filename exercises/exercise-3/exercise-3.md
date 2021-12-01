@@ -19,8 +19,8 @@ Bring down the single-service stack.
 
 - Environment variables:
 
-    MYSQL_ROOT_PASSWORD=mypassword
-    MYSQL_DATABASE=items
+        MYSQL_ROOT_PASSWORD=mypassword
+        MYSQL_DATABASE=items
 
 > See [this page](https://docs.docker.com/compose/compose-file/compose-file-v3/#environment) for how to specify environment variables for a service.
 
