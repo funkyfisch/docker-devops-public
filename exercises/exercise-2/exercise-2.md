@@ -79,7 +79,9 @@ In order to persist data _between_ container lifetimes, _volumes_ are needed.
 
 - Add a few items, remove the container and start a _second_ container; verify that the REST API returns the items created with the _first_ container.
 
-9. In addition to _named_ volumes, used in the previous step, Docker supports so-called _bind mounts_; this allows you control what host location to mount onto the target location in the container.
+9. __OPTIONAL__ 
+
+In addition to _named_ volumes, used in the previous step, Docker supports so-called _bind mounts_; this allows you control what host location to mount onto the target location in the container.
 
 This can be useful in development mode, when you don't want rebuild the image every time you make a change to the application source code.
 
