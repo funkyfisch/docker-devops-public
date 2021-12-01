@@ -1,0 +1,13 @@
+# Note: Change myapp to your image name.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-myapp 
+spec:
+  type: LoadBalancer
+  selector:
+    runAs: myapp
+  ports:
+    - port: 8080
+      targetPort: 8080

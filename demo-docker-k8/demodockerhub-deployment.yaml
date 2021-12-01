@@ -1,0 +1,22 @@
+# Note: Change myapp to your image name.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-myapp
+spec:
+  template:
+    metadata:
+      name: pod-myapp
+      labels:
+        runAs: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: <My Docker ID>/myapp
+          ports:
+            - containerPort: 8080
+  selector:
+    matchLabels:
+      runAs: myapp
+  replicas: 2
