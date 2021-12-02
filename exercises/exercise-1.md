@@ -17,8 +17,8 @@ Navigate to `http://localhost:8080` to verify that the web server is running.
 
 3. Run the following to install the `curl` package _within the container_:
 
-    apt-get update
-    apt-get install curl
+        apt-get update
+        apt-get install curl
 
 Run `curl` (again, _within the container_) to verify that the web server is running.
 
