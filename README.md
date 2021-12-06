@@ -28,6 +28,22 @@ The examples include:
 
   See the `Dockerfile` for how to run a specific stage.
 
+- `demo-multistage-java`
+
+  An example of a multistage build for a Java application.
+  
+  In order to create a production image that excludes intermediate build files (class files in the case of Java), the `Dockerfile` in this demo uses the `COPY --from=<stage>` flag to build the project and then select only the final JAR file for the production image.
+
+  To create the test image (which also runs tests):
+
+      docker build -t javamultistage-test --target test .
+
+  To create the production image and run the application:
+
+      docker build -t javamultistage-prod --target production .
+
+      docker run javamultistage-prod 
+
 - `demo-docker-compose`
 
   An example of how to "compose and run multiple application services" using `docker-compose`.
