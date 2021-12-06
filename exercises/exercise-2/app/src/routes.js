@@ -42,7 +42,5 @@ module.exports = {
   addItem,
   deleteItem,
   getItems,
-  updateItem,
-
-  getItem
+  updateItem
 };
