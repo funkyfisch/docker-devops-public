@@ -18,7 +18,7 @@ services:
 
 Run:
 
-    docker-compose -d --build up
+    docker-compose up -d --build
 
 and verify that the API server is running (navigate to `http://localhost:8080/items`).
 

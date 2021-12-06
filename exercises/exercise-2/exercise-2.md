@@ -36,8 +36,8 @@ Execute the following steps to complete the exercise:
 
 Add one (or more) item(s) to the database via the application's REST API:
 
-    curl -X POST -d '{"name":"foo"}' http://localhost:8080/items
-    curl -X POST -d '{"name":"bar"}' http://localhost:8080/items
+    curl -X POST -d '{"name":"foo"}' -H 'Content-Type: application/json' http://localhost:8080/items
+    curl -X POST -d '{"name":"bar"}' -H 'Content-Type: application/json' http://localhost:8080/items
 
 Verify that these items have been added.
 

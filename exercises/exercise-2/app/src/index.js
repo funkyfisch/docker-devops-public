@@ -5,7 +5,7 @@ const {
     getItems,
     addItem,
     updateItem,
-    deleteItem    
+    deleteItem
 } = require('./routes');
 
 

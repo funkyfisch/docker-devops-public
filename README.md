@@ -1,6 +1,9 @@
 # Docker Workshop
 This repository contains the examples and exercises for the Edument Docker Workshop.
 
+## Installation
+Ensure that [Docker Desktop](https://www.docker.com/products/docker-desktop) is installed on your system.
+
 ## Overview
 The examples include:
 
@@ -80,35 +83,35 @@ Follow these instructions to set up such a pipeline using Github Actions and Doc
 
 6. Replace the default workflow content with the following:
 
-    ```yaml
-    name: Docker Image CI
+```yaml
+name: Docker Image CI
 
-    on:
-      push:
-        branches: [ master ]
-      pull_request:
-        branches: [ master ]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
-    jobs:
+jobs:
 
-      build:
+  build:
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
-        - name: Login to Docker Hub
-          uses: docker/login-action@v1
-          with:
-            username: ${{ secrets.DOCKER_HUB_USERNAME }}
-            password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    steps:
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-        - uses: actions/checkout@v2
-        - name: Build the Docker image
-          run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/myimage:latest
-        
-        - name: Publish the Docker image
-          run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/myimage
-    ```
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/myimage:latest
+    
+    - name: Publish the Docker image
+      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/myimage
+```
 
     __Note__: Replace `myimage` in the workflow above with the name you've chosen for your particular image.
 
