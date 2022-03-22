@@ -7,8 +7,6 @@ Copy `app` folder from exercise 2 to this exercise folder.
 docker-compose.yaml:
 
 ```
-version: "3.7"
-
 services:
   api:
     build: .
@@ -28,8 +26,6 @@ Run:
 
 ## Step 3
 ```
-version: "3.7"
-
 services:
   api:
     build: .
@@ -55,8 +51,6 @@ volumes:
 
 ## Step 4
 ```
-version: "3.7"
-
 services:
   api:
     build: .
