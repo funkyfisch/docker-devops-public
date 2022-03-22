@@ -4,7 +4,7 @@ In this exercise, you will build and run your image for a NodeJS application.
 ## Steps
 Execute the following steps to complete the exercise:
 
-1. Create a `Dockerfile` with the following configuration and order:
+1. Create a `Dockerfile` in the `app` directory with the following configuration and order:
 
 - Base image: `node:latest`
 
