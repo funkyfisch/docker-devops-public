@@ -1,8 +1,15 @@
 services:
-  api:
-    build: .
-    ports:
+  web:
+    build:
+      context: ./web
+    ports: 
       - "8080:80"
+    
+  api:
+    build: 
+      context: ./app
+    ports:
+      - "80"
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_USER=root
@@ -10,9 +17,12 @@ services:
       - MYSQL_DB=items
     depends_on:
       - mysql
+    restart: always
+    deploy:
+      replicas: 2
       
   mysql:
-    # platform: linux/x86_64 # only for Mac M1.
+    platform: linux/x86_64 # only for Mac M1.
     image: mysql:5.7.36
     environment:
       - MYSQL_ROOT_PASSWORD=mypassword

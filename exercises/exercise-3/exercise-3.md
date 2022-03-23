@@ -5,7 +5,7 @@ In this exercise, you will use docker-compose to run multiple, connected contain
 
 1. Copy the `app` folder from exercise 2 (containing your solution) to this exercise folder.
 
-2. Create a `docker-compose.yaml` file inside the `app` folder.
+2. Create a `docker-compose.yaml` file in the exercise folder.
 
 Add a service definition named `api` - based on the `app/Dockerfile` - and launch the single-service stack.
 
@@ -64,3 +64,37 @@ In the mysql prompt, type `use items` to switch to the items database.
 Run the SQL INSERT statement (important: end the statement with a semicolon).
 
 Verify that the API returns the item you've manually created.
+
+### Scaling containers (optional)
+Docker Compose creates one container per service by default. Sometimes you want to simulate having multiple containers running for a service, e.g. when testing if a service that is supposed to be _stateless_ is behaving correctly (and this is also more reminiscent of a production environment). 
+
+In this part, you'll extend your `docker-compose.yaml` file:
+
+- Add a service definition for the `web` service, which will accept client requests on port `8080`. 
+
+- The `api` service is now hidden and instead accepts client requests from the `web` service; remove the host port from the `ports` mapping (why is this needed?).
+
+- Ensure that any `api` container that crashes is automatically restarted (see [restart](https://docs.docker.com/compose/compose-file/compose-file-v3/#restart)).
+
+- Create _two_ containers for the `api` service by default (see [replicas](https://docs.docker.com/compose/compose-file/compose-file-v3/#replicas)).
+
+In the `app/src/index.js` file, add "middleware" for the `/items` route to log requests:
+
+```
+app.get('/items', (req, _res, next) => {
+    console.log('Request path:', req.path);
+    next();
+}, getItems);
+```
+
+Bring the service stack up. Follow the logs for the `api` service. 
+
+Then, test the following:
+
+- Open the web browser and quickly (re)load `http://localhost:8080/items` several times; in the logs, you should see the corresponding requests load-balanced across both `api` containers.
+
+- Crash one of the `api` containers via
+
+        docker exec -it <api-container-name> kill 1
+
+Run `docker ps` and verify that Docker has restarted the crashed container.

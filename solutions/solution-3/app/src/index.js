@@ -14,7 +14,10 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/items', getItems);
+app.get('/items', (req, _res, next) => {
+    console.log('Request path:', req.path)
+    next()
+}, getItems);
 app.get('/items/:id', getItem);
 app.post('/items', addItem);
 app.put('/items/:id', updateItem);
@@ -23,7 +26,6 @@ app.delete('/items/:id', deleteItem);
 db.init().then(() => {
     app.listen(process.env.PORT, () => console.log('Listening on port ' + process.env.PORT));
 }).catch((err) => {
-    console.log('here');
     console.error(err);
     process.exit(1);
 });
