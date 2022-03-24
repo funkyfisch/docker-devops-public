@@ -91,7 +91,7 @@ Bring the service stack up. Follow the logs for the `api` service.
 
 Then, test the following:
 
-- Open the web browser and quickly (re)load `http://localhost:8080/items` several times; in the logs, you should see the corresponding requests load-balanced across both `api` containers.
+- Open the web browser and quickly (re)load `http://localhost:8080` several times; in the logs, you should see the corresponding requests load-balanced across both `api` containers.
 
 - Crash one of the `api` containers via
 
