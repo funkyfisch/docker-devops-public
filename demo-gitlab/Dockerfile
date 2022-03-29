@@ -11,8 +11,8 @@ RUN npm ci
 COPY *.js .
 RUN npm run test
 
-# docker build -t demo-multistage --target main .
-FROM base as main
+# docker build -t demo-multistage --target prod .
+FROM base as prod
 RUN npm ci --production
 COPY index.js .
 

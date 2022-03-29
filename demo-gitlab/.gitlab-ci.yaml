@@ -1,0 +1,54 @@
+variables:
+    DOCKER_BUILDKIT: 1
+
+    IMAGE_BASE: $CI_REGISTRY_IMAGE/base:latest
+    IMAGE_TEST: $CI_REGISTRY_IMAGE/test:latest
+    IMAGE_MAIN: $CI_REGISTRY_IMAGE/main:latest
+
+image: docker
+
+services: 
+    - docker:dind
+
+stages:
+    - base
+    - test
+    - deploy
+
+build-target-base:
+    stage: base
+
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+    script:
+        - docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from $IMAGE_BASE -t $IMAGE_BASE --target base .
+        - docker push $IMAGE_BASE
+
+    after_script:
+        - docker logout $CI_REGISTRY
+
+build-target-test:
+    stage: test
+
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+    script:
+        - docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from $IMAGE_BASE --cache-from $IMAGE_TEST -t $IMAGE_TEST --target test .
+
+    after_script:
+        - docker logout $CI_REGISTRY
+
+build-target-main:
+    stage: deploy
+
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+    script:
+        - docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from $IMAGE_BASE --cache-from $IMAGE_MAIN -t $IMAGE_MAIN --target main .
+        - docker push $IMAGE_MAIN
+
+    after_script:
+        - docker logout $CI_REGISTRY
