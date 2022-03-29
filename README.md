@@ -135,6 +135,9 @@ jobs:
 
 7. Make a change to the application code and push it to the Github repository; this will trigger a build of the Docker image. After a moment, your Docker Hub repository should have been updated with the new image.
 
+## CI/CD with Gitlab
+See the `demo-gitlab` folder for an example of a multistage Gitlab pipeline (for a NodeJS application).
+
 ## Container Orchestration with Kubernetes (K8)
 Implementing container based applications typically involves the complex task of managing multiple containers; Kubernetes is a container orchestration platform that you can utilize for deploying and running your application.
 
