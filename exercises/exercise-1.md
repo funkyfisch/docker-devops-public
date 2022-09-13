@@ -32,11 +32,11 @@ Verify that your changes to the page have been saved.
 
 Exit the container (using the `exit` command).
 
-Stop the `mywebserver` container and then start it again; do the page changes remain?
+Stop the `mywebserver` container and then start it again (using `docker start`); do the page changes remain?
 
 5. When started, a container, by default, will attach to a default "bridge" network that is managed by Docker. Other containers may connect to it, either by name or via its IP address.
 
-Start _and_ attach to a new container using the following configuration:
+Run _and_ attach to a new container using the following configuration:
 
 - Image: `ubuntu`
 - Name: `mywebclient`
